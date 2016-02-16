@@ -55,6 +55,7 @@ public class PDFScreenCatcher implements ActionListener {
 	private void populateMenu() {
 		menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		menu.setLocationRelativeTo(null);
+		menu.setAlwaysOnTop(true);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridBagLayout());
@@ -200,8 +201,12 @@ public class PDFScreenCatcher implements ActionListener {
 	
 	public static void main(String[] args) throws AWTException, IOException, COSVisitorException {
 		String home = System.getProperty("user.home");
-		System.out.println(home);
-		new PDFScreenCatcher(home + File.separator + "Desktop", "new1");
+		String s = home + File.separator + "Desktop" + File.separator + "invoice_mailer";
+		File f = new File(s);
+		if (!f.exists())
+			f.mkdirs();
+		
+		new PDFScreenCatcher(s, "new1");
 
 	}
 }
